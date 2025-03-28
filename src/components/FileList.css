@@ -1,0 +1,108 @@
+.file-list {
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #e6e9ef;
+  border-radius: 4px;
+}
+
+.breadcrumbs {
+  margin-bottom: 10px;
+}
+
+.breadcrumb-link {
+  background: none;
+  border: none;
+  color: #0061ff;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.file-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.file-list th,
+.file-list td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e6e9ef;
+  color: #162d3d;
+}
+
+.file-list th {
+  background: #f7f9fc;
+  font-weight: 600;
+}
+
+.file-list button {
+  margin-right: 5px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  background: #0061ff;
+  border: none;
+}
+
+.file-list button:hover {
+  background: #0051cc;
+}
+
+.file-list .btn-danger {
+  background: #dc3545;
+  border: none;
+}
+
+.file-list .btn-danger:hover {
+  background: #c82333;
+}
+
+.folder {
+  color: #0061ff;
+  cursor: pointer;
+}
+
+.folder:hover {
+  text-decoration: underline;
+}
+
+.share-container {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.share-url {
+  flex-grow: 1;
+  padding: 6px;
+  margin-right: 5px;
+  border: 1px solid #e6e9ef;
+  border-radius: 4px;
+  font-size: 12px;
+  max-width: 200px;
+  color: #162d3d;
+}
+
+.share-container button:nth-child(2) {
+  background: #f1c40f;
+  color: black;
+}
+
+.share-container button:nth-child(2):hover {
+  background: #d4ac0d;
+}
+
+.share-container button:nth-child(3) {
+  background: #95a5a6;
+  padding: 6px 8px;
+}
+
+.share-container button:nth-child(3):hover {
+  background: #7f8c8d;
+}
