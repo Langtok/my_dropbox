@@ -22,7 +22,7 @@ function FileUpload({ onUploadComplete, currentPath }) {
     try {
       const basePath = currentPath.replace(/\/+$/, '');
       const uploadKey = `${basePath}/${file.name}`;
-      console.log('Uploading to:', uploadKey); // Debug log
+      console.log('Uploading to:', uploadKey);
       await uploadData({
         key: uploadKey,
         data: file,
@@ -47,7 +47,7 @@ function FileUpload({ onUploadComplete, currentPath }) {
     try {
       const basePath = currentPath.replace(/\/+$/, '');
       const folderKey = `${basePath}/${folderName.replace(/^\/+|\/+$/g, '')}/`;
-      console.log('Creating folder at:', folderKey); // Debug log
+      console.log('Creating folder at:', folderKey);
       await uploadData({
         key: folderKey,
         data: '',

@@ -29,8 +29,10 @@ function FileList({ refreshTrigger, currentPath, onNavigate }) {
       const key = path.replace('public/', '');
       await remove({ key });
       fetchFiles();
+      alert('Item deleted successfully!');
     } catch (error) {
-      console.error('Error deleting file:', error);
+      console.error('Error deleting item:', error);
+      alert('Deletion failed!');
     }
   };
 
@@ -58,6 +60,7 @@ function FileList({ refreshTrigger, currentPath, onNavigate }) {
 
   const handleCopy = (path) => {
     navigator.clipboard.writeText(shareUrl[path]);
+    alert('Link copied to clipboard!');
   };
 
   const clearShareUrl = (path) => {
@@ -70,7 +73,6 @@ function FileList({ refreshTrigger, currentPath, onNavigate }) {
 
   const handleFolderClick = (path) => {
     if (!path.endsWith('/')) return;
-    console.log('Navigating to folder:', path); // Debug log
     onNavigate(path);
   };
 
@@ -80,20 +82,25 @@ function FileList({ refreshTrigger, currentPath, onNavigate }) {
     onNavigate(newPath);
   };
 
-  const breadcrumbs = currentPath.split('/').filter(Boolean);
+  const breadcrumbs = currentPath.split('/').filter(Boolean).slice(1); // Remove 'public'
 
   return (
     <div className="file-list">
       <div className="breadcrumbs">
+        <span>
+          <button onClick={() => onNavigate('public/')} className="breadcrumb-link">
+            Home
+          </button>
+        </span>
         {breadcrumbs.map((crumb, index) => (
           <span key={index}>
+            <span className="separator">/</span>
             <button
               onClick={() => handleBreadcrumbClick(index)}
               className="breadcrumb-link"
             >
               {crumb}
             </button>
-            {index < breadcrumbs.length - 1 && <span className="separator">/</span>}
           </span>
         ))}
       </div>
@@ -118,20 +125,22 @@ function FileList({ refreshTrigger, currentPath, onNavigate }) {
               </td>
               <td>{file.size ? (file.size / 1024).toFixed(2) : '—'} KB</td>
               <td>
-                {!file.isFolder && (
-                  <div className="actions">
-                    <button onClick={() => handlePreview(file.path)}>Preview</button>
-                    <button onClick={() => handleShare(file.path)}>Share</button>
-                    {shareUrl[file.path] && (
-                      <div className="share-container">
-                        <input type="text" value={shareUrl[file.path]} readOnly />
-                        <button onClick={() => handleCopy(file.path)}>Copy</button>
-                        <button onClick={() => clearShareUrl(file.path)}>✕</button>
-                      </div>
-                    )}
-                    <button onClick={() => handleDelete(file.path)}>Delete</button>
-                  </div>
-                )}
+                <div className="actions">
+                  {!file.isFolder && (
+                    <>
+                      <button onClick={() => handlePreview(file.path)}>Preview</button>
+                      <button onClick={() => handleShare(file.path)}>Share</button>
+                      {shareUrl[file.path] && (
+                        <div className="share-container">
+                          <input type="text" value={shareUrl[file.path]} readOnly />
+                          <button onClick={() => handleCopy(file.path)}>Copy</button>
+                          <button onClick={() => clearShareUrl(file.path)}>✕</button>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  <button onClick={() => handleDelete(file.path)}>Delete</button>
+                </div>
               </td>
             </tr>
           ))}

@@ -9,7 +9,7 @@ import './App.css';
 
 function App() {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-  const [currentPath, setCurrentPath] = useState('public/');
+  const [currentPath, setCurrentPath] = useState('public/'); // Root starts at 'public/'
   const [view, setView] = useState('files');
 
   const handleUploadComplete = () => {
@@ -17,7 +17,7 @@ function App() {
   };
 
   const handleNavigate = (path) => {
-    console.log('Navigating to:', path); // Debug log
+    console.log('Navigating to:', path);
     setCurrentPath(path);
     setRefreshTrigger(prev => prev + 1);
   };
