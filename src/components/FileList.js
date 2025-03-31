@@ -18,17 +18,17 @@ function FileList({ refreshTrigger, currentPath, onNavigate }) {
     } catch (error) {
       console.error('Error fetching files:', error);
     }
-  }, [currentPath]); // `currentPath` is a dependency of `fetchFiles`
+  }, [currentPath]);
 
   useEffect(() => {
     fetchFiles();
-  }, [fetchFiles, refreshTrigger]); // Include `fetchFiles` and `refreshTrigger` as dependencies
+  }, [fetchFiles, refreshTrigger]);
 
   const handleDelete = async (path) => {
     try {
       const key = path.replace('public/', '');
       await remove({ key });
-      fetchFiles(); // Re-fetch files after deletion
+      fetchFiles();
     } catch (error) {
       console.error('Error deleting file:', error);
     }
@@ -70,6 +70,7 @@ function FileList({ refreshTrigger, currentPath, onNavigate }) {
 
   const handleFolderClick = (path) => {
     if (!path.endsWith('/')) return;
+    console.log('Navigating to folder:', path); // Debug log
     onNavigate(path);
   };
 

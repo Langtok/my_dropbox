@@ -22,6 +22,7 @@ function FileUpload({ onUploadComplete, currentPath }) {
     try {
       const basePath = currentPath.replace(/\/+$/, '');
       const uploadKey = `${basePath}/${file.name}`;
+      console.log('Uploading to:', uploadKey); // Debug log
       await uploadData({
         key: uploadKey,
         data: file,
@@ -45,12 +46,13 @@ function FileUpload({ onUploadComplete, currentPath }) {
     setCreatingFolder(true);
     try {
       const basePath = currentPath.replace(/\/+$/, '');
-      const folderKey = `${basePath}/${folderName.replace(/^\/+|\/+$/g, '')}/`; // Ensure no leading/trailing slashes in name
+      const folderKey = `${basePath}/${folderName.replace(/^\/+|\/+$/g, '')}/`;
+      console.log('Creating folder at:', folderKey); // Debug log
       await uploadData({
         key: folderKey,
-        data: '', // Empty string to create a "folder"
+        data: '',
         options: {
-          contentType: 'application/x-directory', // Optional: indicates a directory
+          contentType: 'application/x-directory',
         },
       }).result;
       setFolderName('');
