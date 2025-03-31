@@ -19,9 +19,7 @@ function Profile() {
   const fetchUserProfile = async () => {
     try {
       const currentUser = await getCurrentUser();
-      console.log('Current user:', currentUser);
       const attributes = await fetchUserAttributes();
-      console.log('User attributes:', attributes);
       setUser(currentUser);
       setEmail(attributes.email || '');
     } catch (error) {
@@ -32,10 +30,6 @@ function Profile() {
   };
 
   const handleSave = async () => {
-    if (!user) {
-      alert('No user data available to update.');
-      return;
-    }
     if (!oldPassword || !newPassword || !confirmPassword) {
       setError('All password fields are required.');
       return;
@@ -44,81 +38,69 @@ function Profile() {
       setError('New password and confirmation do not match.');
       return;
     }
-
     setSaving(true);
     setError('');
     try {
-      await updatePassword({
-        oldPassword: oldPassword,
-        newPassword: newPassword,
-      });
-      alert('Password updated successfully!');
+      await updatePassword({ oldPassword, newPassword });
       setOldPassword('');
       setNewPassword('');
       setConfirmPassword('');
     } catch (error) {
-      console.error('Error updating password:', error);
       setError('Failed to update password: ' + error.message);
     } finally {
       setSaving(false);
     }
   };
 
-  if (loading) return <div>Loading profile...</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="profile">
-      <div className="profile-field">
-        <label>Username:</label>
-        <input
-          type="text"
-          value={user?.username || 'N/A'}
-          disabled
-        />
+      <div className="profile-section">
+        <h2>Account Info</h2>
+        <div className="profile-field">
+          <label>Username</label>
+          <input type="text" value={user?.username || 'N/A'} disabled />
+        </div>
+        <div className="profile-field">
+          <label>Email</label>
+          <input type="email" value={email} disabled />
+        </div>
       </div>
-      <div className="profile-field">
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          disabled
-        />
+      <div className="profile-section">
+        <h2>Change Password</h2>
+        <div className="profile-field">
+          <label>Old Password</label>
+          <input
+            type="password"
+            value={oldPassword}
+            onChange={e => setOldPassword(e.target.value)}
+            disabled={saving}
+          />
+        </div>
+        <div className="profile-field">
+          <label>New Password</label>
+          <input
+            type="password"
+            value={newPassword}
+            onChange={e => setNewPassword(e.target.value)}
+            disabled={saving}
+          />
+        </div>
+        <div className="profile-field">
+          <label>Confirm New Password</label>
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
+            disabled={saving}
+          />
+        </div>
+        {error && <div className="error-message">{error}</div>}
+        <button onClick={handleSave} disabled={saving}>
+          {saving ? 'Saving...' : 'Update Password'}
+        </button>
       </div>
-      <div className="profile-field">
-        <label>Old Password:</label>
-        <input
-          type="password"
-          value={oldPassword}
-          onChange={(e) => setOldPassword(e.target.value)}
-          disabled={saving}
-        />
-      </div>
-      <div className="profile-field">
-        <label>New Password:</label>
-        <input
-          type="password"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-          disabled={saving}
-        />
-      </div>
-      <div className="profile-field">
-        <label>Confirm New Password:</label>
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          disabled={saving}
-        />
-      </div>
-      {error && <div className="error-message">{error}</div>}
-      <button
-        onClick={handleSave}
-        disabled={saving}
-        className="save-button"
-      >
-        {saving ? 'Saving...' : 'Update Password'}
-      </button>
     </div>
   );
 }

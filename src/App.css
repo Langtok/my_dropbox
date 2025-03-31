@@ -1,82 +1,46 @@
 .app {
   display: flex;
-  background: #ffffff;
-  min-height: 100vh;
+  height: 100vh;
+  font-family: 'Open Sans', Arial, sans-serif;
 }
 
 .main-content {
-  margin-left: 250px;
-  flex-grow: 1;
-  padding: 20px;
+  flex: 1;
+  background: #FFFFFF;
+  overflow-y: auto;
 }
 
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background: #ffffff;
-  border-bottom: 1px solid #e6e9ef;
-  margin-bottom: 20px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #E5E5E5;
+  background: #FFFFFF;
 }
 
 .app-header h1 {
-  color: #162d3d;
   font-size: 24px;
+  font-weight: 600;
+  color: #162D3D;
   margin: 0;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
 }
 
 .sign-out-button {
   background: none;
   border: none;
-  color: #0061ff;
+  color: #0061FF;
+  font-weight: 600;
+  padding: 8px 16px;
   cursor: pointer;
+  transition: color 0.2s;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-[data-amplify-authenticator] {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #f7f9fc;
-}
-
-[data-amplify-form] {
-  background: #ffffff;
-  padding: 40px;
-  border: 1px solid #e6e9ef;
-  border-radius: 4px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  max-width: 400px;
-}
-
-[data-amplify-form] .btn-primary {
-  background-color: #0061ff;
-  border-color: #0061ff;
-}
-
-[data-amplify-form] .btn-primary:hover {
-  background-color: #0051cc;
-  border-color: #0051cc;
-}
-
-[data-amplify-form] .form-label {
-  color: #162d3d;
-  font-weight: 500;
-}
-
-[data-amplify-form] .form-control {
-  border-color: #e6e9ef;
-}
-
-[data-amplify-form] .form-control:focus {
-  border-color: #0061ff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 97, 255, 0.25);
+.sign-out-button:hover {
+  color: #003087;
 }
