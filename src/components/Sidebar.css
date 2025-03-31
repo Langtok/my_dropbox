@@ -1,48 +1,52 @@
 .sidebar {
-    width: 250px;
-    background: #f7f9fc;
-    padding: 20px;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    border-right: 1px solid #e6e9ef;
-  }
-  
-  .logo {
-    margin-bottom: 30px;
-  }
-  
-  .logo h2 {
-    color: #7700ff;
-    font-size: 24px;
-    margin: 0;
-  }
-  
-  nav button {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 10px 15px;
-    background: none;
-    border: none;
-    text-align: left;
-    color: #162d3d;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
-  nav button:hover {
-    background: #e6e9ef;
-  }
-  
-  nav button.active {
-    background: #7700ff;
-    color: white;
-  }
-  
-  .icon {
-    margin-right: 10px;
-  }
+  width: 220px;
+  background: #F7F9FB;
+  border-right: 1px solid #E5E5E5;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  padding: 0 24px 20px;
+}
+
+.logo h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0061FF;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
+nav button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 12px 24px;
+  font-size: 14px;
+  color: #162D3D;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+nav button:hover {
+  background: #E5E5E5;
+}
+
+nav button.active {
+  background: #E8F0FE;
+  color: #0061FF;
+  font-weight: 600;
+}
+
+.icon {
+  margin-right: 12px;
+  font-size: 18px;
+}

@@ -12,16 +12,11 @@ function App() {
   const [currentPath, setCurrentPath] = useState('public/');
   const [view, setView] = useState('files');
 
-  const handleUploadComplete = () => {
-    setRefreshTrigger(prev => prev + 1);
-  };
-
+  const handleUploadComplete = () => setRefreshTrigger(prev => prev + 1);
   const handleNavigate = (path) => {
-    console.log('Navigating to:', path);
     setCurrentPath(path);
     setRefreshTrigger(prev => prev + 1);
   };
-
   const handleSignOut = async () => {
     try {
       await signOut();
@@ -35,23 +30,18 @@ function App() {
       <Sidebar currentView={view} setView={setView} />
       <div className="main-content">
         <header className="app-header">
-          <h1>{view === 'files' ? 'Files' : 'Profile'}</h1>
-          <button className="btn btn-danger sign-out-button" onClick={handleSignOut}>
-            Sign Out
-          </button>
+          <h1>{view === 'files' ? 'Files' : 'Account'}</h1>
+          <div className="user-actions">
+            <button className="sign-out-button" onClick={handleSignOut}>
+              Sign out
+            </button>
+          </div>
         </header>
         <main>
           {view === 'files' ? (
             <>
-              <FileUpload 
-                onUploadComplete={handleUploadComplete} 
-                currentPath={currentPath} 
-              />
-              <FileList 
-                refreshTrigger={refreshTrigger} 
-                currentPath={currentPath} 
-                onNavigate={handleNavigate} 
-              />
+              <FileUpload onUploadComplete={handleUploadComplete} currentPath={currentPath} />
+              <FileList refreshTrigger={refreshTrigger} currentPath={currentPath} onNavigate={handleNavigate} />
             </>
           ) : (
             <Profile />

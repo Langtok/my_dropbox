@@ -5,20 +5,20 @@ function Sidebar({ currentView, setView }) {
   return (
     <div className="sidebar">
       <div className="logo">
-        <h2>My Dropbox-Clone</h2>
+        <h2>Dropbox</h2> {/* Simplified to match branding */}
       </div>
       <nav>
-        <button 
-          className={currentView === 'files' ? 'active' : ''} 
+        <button
+          className={currentView === 'files' ? 'active' : ''}
           onClick={() => setView('files')}
         >
-          <span className="icon">📁</span> Files
+          <span className="icon">🏠</span> Home
         </button>
-        <button 
-          className={currentView === 'profile' ? 'active' : ''} 
+        <button
+          className={currentView === 'profile' ? 'active' : ''}
           onClick={() => setView('profile')}
         >
-          <span className="icon">👤</span> Profile
+          <span className="icon">👤</span> Account
         </button>
       </nav>
     </div>

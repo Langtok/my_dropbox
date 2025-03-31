@@ -1,108 +1,88 @@
 .file-list {
-  background: #ffffff;
-  padding: 20px;
-  border: 1px solid #e6e9ef;
-  border-radius: 4px;
+  padding: 24px;
 }
 
 .breadcrumbs {
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .breadcrumb-link {
   background: none;
   border: none;
-  color: #0061ff;
+  color: #0061FF;
+  font-size: 14px;
   cursor: pointer;
   padding: 0;
-  font-size: 14px;
 }
 
 .breadcrumb-link:hover {
   text-decoration: underline;
 }
 
-.file-list table {
+.separator {
+  color: #767676;
+  margin: 0 8px;
+}
+
+table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.file-list th,
-.file-list td {
-  padding: 12px;
+th, td {
+  padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid #e6e9ef;
-  color: #162d3d;
+  border-bottom: 1px solid #E5E5E5;
 }
 
-.file-list th {
-  background: #f7f9fc;
+th {
   font-weight: 600;
+  color: #162D3D;
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
-.file-list button {
-  margin-right: 5px;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  color: white;
-  background: #0061ff;
-  border: none;
+td {
+  font-size: 14px;
+  color: #162D3D;
 }
 
-.file-list button:hover {
-  background: #0051cc;
-}
-
-.file-list .btn-danger {
-  background: #dc3545;
-  border: none;
-}
-
-.file-list .btn-danger:hover {
-  background: #c82333;
-}
-
-.folder {
-  color: #0061ff;
+.folder, .file {
   cursor: pointer;
 }
 
-.folder:hover {
+.folder:hover, .file:hover {
+  color: #0061FF;
+}
+
+.actions button {
+  background: none;
+  border: none;
+  color: #0061FF;
+  font-size: 14px;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.actions button:hover {
   text-decoration: underline;
 }
 
 .share-container {
-  margin-top: 5px;
+  margin-top: 8px;
   display: flex;
   align-items: center;
 }
 
-.share-url {
-  flex-grow: 1;
+.share-container input {
+  flex: 1;
   padding: 6px;
-  margin-right: 5px;
-  border: 1px solid #e6e9ef;
-  border-radius: 4px;
   font-size: 12px;
-  max-width: 200px;
-  color: #162d3d;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  margin-right: 8px;
 }
 
-.share-container button:nth-child(2) {
-  background: #f1c40f;
-  color: black;
-}
-
-.share-container button:nth-child(2):hover {
-  background: #d4ac0d;
-}
-
-.share-container button:nth-child(3) {
-  background: #95a5a6;
-  padding: 6px 8px;
-}
-
-.share-container button:nth-child(3):hover {
-  background: #7f8c8d;
+.share-container button {
+  margin-right: 8px;
 }
