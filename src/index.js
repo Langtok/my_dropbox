@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Amplify } from 'aws-amplify';
 import App from './App';
 import awsExports from './aws-exports';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 Amplify.configure(awsExports);
 

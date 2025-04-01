@@ -9,7 +9,7 @@ import './App.css';
 
 function App() {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-  const [currentPath, setCurrentPath] = useState('public/'); // Root starts at 'public/'
+  const [currentPath, setCurrentPath] = useState('public/');
   const [view, setView] = useState('files');
 
   const handleUploadComplete = () => {
@@ -35,14 +35,21 @@ function App() {
       <Sidebar currentView={view} setView={setView} />
       <div className="main-content">
         <header className="app-header">
-          <h1>{view === 'files' ? 'Files' : 'Profile'}</h1>
-          <button className="sign-out-button" onClick={handleSignOut}>
-            Sign out
-          </button>
+          <div className="header-left">
+            <h1>{view === 'files' ? 'Files' : 'Account'}</h1>
+            {view === 'files' && (
+              <span className="path-info">Path: {currentPath}</span>
+            )}
+          </div>
+          <div className="header-right">
+            <button className="sign-out-button" onClick={handleSignOut}>
+              Sign out
+            </button>
+          </div>
         </header>
-        <main>
+        <main className="app-main">
           {view === 'files' ? (
-            <>
+            <div className="files-view">
               <FileUpload 
                 onUploadComplete={handleUploadComplete} 
                 currentPath={currentPath} 
@@ -52,7 +59,7 @@ function App() {
                 currentPath={currentPath} 
                 onNavigate={handleNavigate} 
               />
-            </>
+            </div>
           ) : (
             <Profile />
           )}
@@ -64,27 +71,37 @@ function App() {
 
 const components = {
   Header() {
-    return <div className="text-center mb-4"></div>;
+    return (
+      <div className="auth-header">
+        <h2>Dropbox</h2>
+      </div>
+    );
   },
   SignIn: {
     Header() {
       return (
-        <h4 className="text-center text-dark mb-4">
-          Sign in to your account
-        </h4>
+        <div className="auth-subheader">
+          <h3>Sign in to your account</h3>
+        </div>
       );
     },
     Footer() {
-      return null;
+      return (
+        <div className="auth-footer">
+          <p>
+            Don't have an account? <a href="/sign-up">Sign up</a>
+          </p>
+        </div>
+      );
     },
     Username(props) {
       return (
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">Email</label>
+        <div className="auth-field">
+          <label htmlFor="username">Email</label>
           <input
             {...props}
             id="username"
-            className="form-control"
+            className="auth-input"
             placeholder="Enter your email"
           />
         </div>
@@ -92,12 +109,12 @@ const components = {
     },
     Password(props) {
       return (
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
+        <div className="auth-field">
+          <label htmlFor="password">Password</label>
           <input
             {...props}
             id="password"
-            className="form-control"
+            className="auth-input"
             placeholder="Enter your password"
           />
         </div>
@@ -105,8 +122,59 @@ const components = {
     },
     Button(props) {
       return (
-        <button {...props} className="btn btn-primary w-100">
+        <button {...props} className="auth-button">
           Sign In
+        </button>
+      );
+    },
+  },
+  SignUp: {
+    Header() {
+      return (
+        <div className="auth-subheader">
+          <h3>Create your account</h3>
+        </div>
+      );
+    },
+    Footer() {
+      return (
+        <div className="auth-footer">
+          <p>
+            Already have an account? <a href="/sign-in">Sign in</a>
+          </p>
+        </div>
+      );
+    },
+    Username(props) {
+      return (
+        <div className="auth-field">
+          <label htmlFor="username">Email</label>
+          <input
+            {...props}
+            id="username"
+            className="auth-input"
+            placeholder="Enter your email"
+          />
+        </div>
+      );
+    },
+    Password(props) {
+      return (
+        <div className="auth-field">
+          <label htmlFor="password">Password</label>
+          <input
+            {...props}
+            id="password"
+            className="auth-input"
+            placeholder="Create a password"
+          />
+        </div>
+      );
+    },
+    Button(props) {
+      return (
+        <button {...props} className="auth-button">
+          Sign Up
         </button>
       );
     },
